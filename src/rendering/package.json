@@ -1,10 +1,10 @@
 {
-  "name": "sxastarter",
+  "name": "rendering",
   "description": "Application utilizing Sitecore JavaScript Services and Next.js",
   "version": "20.1.0-canary",
   "private": true,
   "config": {
-    "appName": "sxastarter",
+    "appName": "rendering",
     "rootPlaceholders": [
       "jss-main"
     ],

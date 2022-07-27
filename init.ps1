@@ -77,7 +77,7 @@ try {
     }
     Write-Host "Generating Traefik TLS certificate..." -ForegroundColor Green
     & $mkcert -install
-    & $mkcert "*.sxastarter.localhost"
+    & $mkcert "*.rendering.localhost"
     & $mkcert "xmcloudcm.localhost"
 
     # stash CAROOT path for messaging at the end of the script
@@ -98,20 +98,20 @@ finally {
 Write-Host "Adding Windows hosts file entries..." -ForegroundColor Green
 
 Add-HostsEntry "xmcloudcm.localhost"
-Add-HostsEntry "www.sxastarter.localhost"
+Add-HostsEntry "www.rendering.localhost"
 
 ###############################
 # Generate scjssconfig
 ###############################
 
-Set-EnvFileVariable "JSS_DEPLOYMENT_SECRET_xmcloudpreview" -Value $xmCloudBuild.renderingHosts.xmcloudpreview.jssDeploymentSecret
+Set-EnvFileVariable "JSS_DEPLOYMENT_SECRET_playsummit" -Value $xmCloudBuild.renderingHosts.playsummit.jssDeploymentSecret
 
 ################################
 # Generate Sitecore Api Key
 ################################
 
 $sitecoreApiKey = (New-Guid).Guid
-Set-EnvFileVariable "SITECORE_API_KEY_xmcloudpreview" -Value $sitecoreApiKey
+Set-EnvFileVariable "SITECORE_API_KEY_playsummit" -Value $sitecoreApiKey
 
 ################################
 # Generate JSS_EDITING_SECRET
@@ -134,7 +134,7 @@ if ($InitEnv) {
     Set-EnvFileVariable "CM_HOST" -Value "xmcloudcm.localhost"
 
     # RENDERING_HOST
-    Set-EnvFileVariable "RENDERING_HOST" -Value "www.sxastarter.localhost"
+    Set-EnvFileVariable "RENDERING_HOST" -Value "www.rendering.localhost"
 
     # REPORTING_API_KEY = random 64-128 chars
     Set-EnvFileVariable "REPORTING_API_KEY" -Value (Get-SitecoreRandomString 128 -DisallowSpecial)
